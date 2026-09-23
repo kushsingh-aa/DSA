@@ -4,16 +4,17 @@ class Solution {
         for(int num:nums){
             xor^=num;
         }
-        int lowestBit=xor & -xor;
-        int[] ans=new int[2];
+        int mask=xor & -xor;
+        int first_unique=0;
+        int second_unique=0;
         for(int num:nums){
-            if((lowestBit & num)==0){
-                ans[0]^=num;
+            if((num & mask)==0){
+                first_unique^=num;
             }
             else{
-                ans[1]^=num;
+                second_unique^=num;
             }
         }
-        return ans;
+        return new int[]{first_unique,second_unique};
     }
 }
