@@ -1,22 +1,18 @@
 class Solution {
     public int[] rearrangeArray(int[] nums) {
-        int n=nums.length;
-        int[] ans=new int[n];
-        int max=0;
-        HashMap<Integer,Integer> mp=new HashMap<>();
-        for(int i=0;i<n;i++){
-            mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
-            max=Math.max(max,mp.get(nums[i]));
+        List<Integer> list=new ArrayList<>();
+        for(int num:nums){
+            list.add(num);
         }
-        List<Integer> list=new ArrayList<>(mp.keySet());
-        Collections.sort(list);
-
+        int []ans=new int[nums.length];
         int index=0;
-        for(int i=1;i<=max;i++){
-            for(int num:list){
-                if(mp.get(num)>=i){
-                    ans[index++]=num;
-                }
+        while(!list.isEmpty()){
+            Set<Integer> set=new HashSet<>(list);
+            List<Integer> unique=new ArrayList<>(set);
+            Collections.sort(unique);
+            for(int ele:unique){
+                ans[index++]=ele;
+                list.remove(Integer.valueOf(ele));
             }
         }
         return ans;
