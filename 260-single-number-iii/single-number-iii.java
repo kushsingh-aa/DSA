@@ -5,16 +5,16 @@ class Solution {
             xor^=num;
         }
         int mask=xor & -xor;
-        int first_unique=0;
-        int second_unique=0;
+        int firstUnique=0;
+        int secondUnique=0;
         for(int num:nums){
             if((num & mask)==0){
-                first_unique^=num;
+                firstUnique^=num;
             }
             else{
-                second_unique^=num;
+                secondUnique^=num;
             }
         }
-        return new int[]{first_unique,second_unique};
+        return new int[]{firstUnique,secondUnique};
     }
 }
